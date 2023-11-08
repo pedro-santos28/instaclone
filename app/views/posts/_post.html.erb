@@ -7,7 +7,7 @@
     <span><%= post.body %></span>
   </div>
   <div class="post-actions">
-    <% if post.likes.present?  %>
+    <% if checkIfUserHasLiked(post) %>
       <%= turbo_frame_tag "post-likes" do %>
         <%= button_to "", post_likes_path(post), class: "post-actions-unlike" , method: :delete%>
       <%end%>

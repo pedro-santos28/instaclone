@@ -101,6 +101,19 @@
   display: block;
 }
 
+.comment-actions-like {
+  background: url('like-icon.png');
+  background-size: contain;
+  display: block;
+}
+
+.comment-actions-unlike {
+  background: url('unlike-icon.png');
+  background-size: contain;
+  display: block;
+}
+
+
 .post-actions {
   display: flex;
   flex-direction: row;
