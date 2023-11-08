@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
     if @post.valid?
       @post.save
-      redirect_to root_path, notice: "Your post has been just created."
+      flash[:notice] = "Your post has been just created."
     else
       render :new, status: :unprocessable_entity
     end
