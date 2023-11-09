@@ -1,12 +1,11 @@
 module PostsHelper
-  def checkIfUserHasLiked(post)
-    if current_user.present? && post.likes.present?
-      post.likes.each do |like|
-        if like.user_id == current_user.id
-          return true
-        end
+  def hasLikedPost(post)
+    if current_user
+      if current_user.likes.find_by(likeable_id: post.id, likeable_type: "Post")
+        true
+      else
+        false
       end
     end
-    return nil
   end
 end

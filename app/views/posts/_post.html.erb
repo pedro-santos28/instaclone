@@ -6,26 +6,30 @@
   <div class="post-body">
     <span><%= post.body %></span>
   </div>
-  <div class="post-actions">
-    <% if checkIfUserHasLiked(post) %>
-      <%= turbo_frame_tag "post-likes" do %>
-        <%= button_to "", post_likes_path(post), class: "post-actions-unlike" , method: :delete%>
-      <%end%>
-    <%else%>
-      <%= turbo_frame_tag "post-likes" do %>
-        <%= button_to "", post_likes_path(post), class: "post-actions-like" %>
+
+  <div class="post-actions" >
+    <div class="post-likes">
+    <%= turbo_frame_tag "post-likes" do %>
+      <% if hasLikedPost(post) %>
+          <%= button_to "", post_likes_path(post), params: {likeable_type: "Post"}, class: "post-actions-unlike" , method: :delete%>
+      <%else%>
+          <%= button_to "", post_likes_path(post), params: {likeable_type: "Post"}, class: "post-actions-like" %>
       <% end %>
     <% end %>
-    
-    <div class="post-actions-comments" id="post-comments-count"> <%= pluralize(post.comments.count, "comment") %> </div>
+    </div>
+    <div>
+      <div class="post-actions-comments" id="post-likes-count"> <%= pluralize(post.likes.count, "like") %> </div>
+      <div class="post-actions-comments" id="post-comments-count"> <%= pluralize(post.comments.count, "comment") %> </div>
+    </div>
   </div>
+
   <div class="post-comments">
     <div id="comment-form">
-       <%= render partial: "comments/form", locals: {post: post}%>
+      <%= render partial: "comments/form", locals: {post: post}%>
     </div>
 
     <div id="post-comments-list">
-     <%= render partial: "comments/list", locals: {post: post}%>
+      <%= render partial: "comments/list", locals: {post: post}%>
     </div>
   </div>
 </div>

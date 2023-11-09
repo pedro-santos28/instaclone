@@ -1,12 +1,11 @@
 module CommentsHelper
-  def checkIfUserHasLiked(comment)
-    if current_user.present? && comment.likes.present?
-      comment.likes.each do |like|
-        if like.user_id == current_user.id
-          return true
-        end
+  def hasLikedComment(comment)
+    if current_user
+      if current_user.likes.find_by(likeable_id: comment.id, likeable_type: "Comment")
+        true
+      else
+        false
       end
     end
-    return nil
   end
 end
