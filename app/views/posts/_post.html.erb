@@ -18,7 +18,6 @@
     <% end %>
     </div>
     <div>
-      <div class="post-actions-comments" id="post-likes-count"> <%= pluralize(post.likes.count, "like") %> </div>
       <div class="post-actions-comments" id="post-comments-count"> <%= pluralize(post.comments.count, "comment") %> </div>
     </div>
   </div>
@@ -28,7 +27,7 @@
       <%= render partial: "comments/form", locals: {post: post}%>
     </div>
 
-    <div id="post-comments-list">
+    <div id="post-comments-list-<%= post.id%>">
       <%= render partial: "comments/list", locals: {post: post}%>
     </div>
   </div>

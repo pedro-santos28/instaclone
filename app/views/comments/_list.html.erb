@@ -1,4 +1,4 @@
- <% post.comments.each do |comment|%>
+ <% post.comments.sort.reverse.each do |comment|%>
   <div class="comment">
     <div>
       <span> <%= comment.user.username %>: </span>
